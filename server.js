@@ -4,17 +4,16 @@ var express = require('express');
 var app = express();
 var mustacheExpress = require('mustache-express');
 app.engine('html', mustacheExpress());
-//app.set('view engine', 'mustache');
 app.set('views', __dirname + '/views');
-var https = require('https');
-var con = mysql.createConnection({
-	host: 'localhost',
-	user: 'root',
-	password: 'mysql',
-	database: 'my_writing'
-});
+var database = require('./database.js');
+var con = database.con;
 
-
+//	Separated Code Pulled In
+var add_edit = require("./add_edit.js").init(app);
+var home = require('./home.js').init(app);
+var login = require("./login.js").init(app);
+var rows = require("./rows.js").init(app);
+var tables = require("./tables.js").init(app);
 
 //	ENDPOINTS BEGIN:
 
