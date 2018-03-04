@@ -3,33 +3,56 @@ CREATE DATABASE art_management;
 
 USE art_management;
 
+CREATE TABLE users (
+	uid_user INT NOT NULL AUTO_INCREMENT,
+	username VARCHAR(25),
+	password TEXT,
+	PRIMARY KEY (uid_user)
+);
+
 CREATE TABLE pieces (
-	pieceTitle VARCHAR(128) PRIMARY KEY UNIQUE,
-	genre VARCHAR(16),
-	wordCount INT,
+	uid_piece INT NOT NULL AUTO_INCREMENT,
+	uid_user INT,
+	title VARCHAR(128),
 	link TEXT,
-	createdDate DATE
+	createdDate DATE,
+	
+	#TYPE 	?? (ENUM)
+	#GENRE 	?? (ENUM) (DIFFERENT COLUMN FOR DIFF TYPES) (INC PORTFOLIO)
+	#SPECIFICATIONS ?? (Word/line count, artwork size, quality, Pages)
+	
+	FOREIGN KEY (uid_user) REFERENCES users(uid_user),
+	PRIMARY KEY (uid_piece)
 );
 CREATE TABLE places (
-	placeName VARCHAR(128) PRIMARY KEY UNIQUE,
+	uid_place INT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(128),
 	deadline DATE,
-	notification VARCHAR(64),
-	cost INT,
-	genre VARCHAR(16),
-	requirements VARCHAR(512), #Including Number of Submissions
-	rights VARCHAR(16),
-	publication BOOLEAN,
-	prize VARCHAR(256),
-	submitLink VARCHAR(128)
+	notification DATE,
+	cost INT DEFAULT 0,
+	submitLink VARCHAR(128),
+	
+	#GENRE 	??
+	#RIGHTS ??
+	#REQS 	?????? (Inc Number of Submissions)
+	#PRIZE 	?????? (Inc Publication)
+	
+	PRIMARY KEY (uid_place)
 );
 
 CREATE TABLE submissions (
-	pieceTitle VARCHAR(128),
-	placeName VARCHAR(128),
+	uid_submission INT NOT NULL AUTO_INCREMENT,
+	uid_user INT,
+	uid_piece INT,
+	uid_place INT,
 	dateSubmitted DATE,
-	result VARCHAR(32),
-	FOREIGN KEY (pieceTitle) REFERENCES pieces(pieceTitle),
-	FOREIGN KEY (placeName) REFERENCES places(placeName)
+	
+	#RESULT ???
+
+	PRIMARY KEY (uid_submission),
+	FOREIGN KEY (uid_user) REFERENCES users(uid_user),
+	FOREIGN KEY (uid_piece) REFERENCES pieces(uid_piece),
+	FOREIGN KEY (uid_place) REFERENCES places(uid_place)
 );
 
 INSERT into pieces (pieceTitle, genre, wordCount, link, createdDate) values ("Golden Dreams", "Flash-Fiction", 779, "https://drive.google.com/open?id=1aPRDlYQk3aF24OXkPcCtku0QcPpkn69BW8Ksr8FZKQE", '2016-04-20');

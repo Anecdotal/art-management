@@ -15,8 +15,8 @@ var login = require("./login.js").init(app);
 var rows = require("./rows.js").init(app);
 var tables = require("./tables.js").init(app);
 
-//	ENDPOINTS BEGIN:
-
+//	OUTDATED ENDPOINTS BEGIN:
+//	DO NOT RUN!!!!
 app.get('/', function(request, response){
 	con.query('SELECT * FROM places', function(err, places) {
 		if(!err) {
