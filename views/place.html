@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css"></link>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.1.0/mustache.min.js"></script>
+		<title>
+			{{placeName}}
+		</title>
+	</head>
+	<body style="background-color: #779cab">
+		{{#place}}
+		<header style="font-size:2px; position: relative;	width: 100%; height: 50px;	background-color: #74d3ae;	color: white;	font-size: 2.75em;">
+			<div style="font-size:.75em; display:inline-block; width: 10%; height: 80%; text-align: left;">
+			<a href="/">Home</a>
+			</div>
+			<div style="font-size:.75em; display:inline-block; width: 60%; height: 80%; text-align: center;"> 
+			{{placeName}}
+			</div>
+			<div style="font-size:.75em; display:inline-block; width: 20%; height: 80%; text-align: right;"> 
+			<a href="/pieces-places"> Pieces + Places </a> 
+		</header>
+		<div style="float:left; width: 49%; height: 50%; text-align:left;">
+			<h3> Information: </h3>
+			<a href="{{submitLink}}" target="_blank"> Submit </a> <br>
+			<b> Deadline:</b> {{deadline}} <br>
+			<b>Notification Date/Period:</b> {{notification}} <br>
+			<b>Cost:</b> {{cost}} <br>
+			<b>Genre:</b> {{genre}} <br>
+			<b>Requirements (including # of subs):</b> {{requirements}} <br>
+			<b>Rights They Receive:</b> {{rights}} <br>
+			<b>Do They Publish:</b> {{publication}} <br>
+			<b>Prize:</b> {{prize}} <br>
+		</div>
+		{{/place}}
+		{{^submitted}}
+		<div style="float:right; position: static; width: 49%; height: 50%; text-align:center;">
+			<h3>Pieces Submitted</h3>
+			<table>
+				<tr>
+					<th>Piece</th>
+					<th>Date Submitted</th>
+					<th>Status</th>
+				</tr>
+				{{#subs}}
+	  			<tr>
+		  			<td>{{pieceTitle}}</td> 
+		  			<td>{{dateSubmitted}}</td> 
+		  			<td>{{result}}</td>
+	  			</tr>
+	  			{{/subs}}
+	  		</table>
+		</div>
+		{{/submitted}}
+	</body>
+</html>                                                                                                                            

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css"></link>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.1.0/mustache.min.js"></script>
+		<title>
+			Writing
+		</title>
+	</head>
+	<body style="background-color: #779cab">
+		<header style="font-size:4em; position: static;	width: 100%; height: 50px;	background-color: #74d3ae;	color: white;	font-size: 2.75em;">
+			<div style="font-size:.75em; display:inline-block; width: 10%; height: 80%; text-align: left;">
+			<a href="/">Home</a>
+			</div>
+			<div style="font-size:.75em; display:inline-block; width: 60%; height: 80%; text-align: center;"> 
+			Pieces + Places: Sorting Table
+			</div>
+			<div style="font-size:.75em; display:inline-block; width: 20%; height: 80%; text-align: right;"> 
+			<a href="/pieces-places"> Pieces + Places </a> 
+			</div>
+		</header>
+		<h2 style="text-align:center;"> Sorting Tables Under Construction: Check Back Later </h2>
+		<div style="float:left; width: 49%; height: 50%; text-align:left;">
+			<h3>Places</h3>
+			<table>
+				<tr>
+					<th>Place</th>
+					<th>Deadline</th>
+					<th>Requirements</th>
+					<th>Prize</th>
+					<th>Link</th>
+				</tr>
+				{{#places}}
+	  			<tr>
+		  			<td><a href="/places/{{placeName}}">{{placeName}}</a></td> 
+		  			<td>{{deadline}}</td> 
+		  			<td>{{requirements}}</td>
+		  			<td>{{prize}}</td>
+		  			<td><a href="{{submitLink}}" target="_blank">Submit Here</a></td>
+	  			</tr>
+	  			{{/places}}
+	  		</table>
+		</div>
+		<div style="float:right; position: static; width: 49%; height: 50%; text-align:center;">
+			<h3>Pieces</h3>
+			<table>
+				<tr>
+					<th>Piece</th>
+					<th>Genre</th>
+					<th>Word Count</th>
+					<th>Date Created</th>
+				</tr>
+				{{#pieces}}
+	  			<tr>
+		  			<td><a href="{{link}}" target="_blank">{{pieceTitle}}</a></td> 
+		  			<td>{{genre}}</td> 
+		  			<td>{{wordCount}}</td>
+		  			<td>{{createdDate}}</td>
+	  			</tr>
+	  			{{/pieces}}
+	  		</table>
+		</div>
+	</body>
+</html>                                                                                                                            
