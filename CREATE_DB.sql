@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS my_writing;
-CREATE DATABASE my_writing;
+DROP DATABASE IF EXISTS art_management;
+CREATE DATABASE art_management;
 
-USE my_writing;
+USE art_management;
 
 CREATE TABLE pieces (
 	pieceTitle VARCHAR(128) PRIMARY KEY UNIQUE,
