@@ -15,7 +15,7 @@ module.exports = function(app) {
 			if(!err) {
 				res.render('?.html', [req.params.type], {data:results});
 			} else {
-				res.render('error.html', {err:err})
+				res.render('error.html', {err:err});
 			}
 		});
 	});
