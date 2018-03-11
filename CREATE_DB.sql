@@ -46,7 +46,8 @@ CREATE TABLE requirements (
 	max_width_wordsLines INT, #Maximum possible width or words or lines
 	max_height_pages INT, #Maximum possible height or pages (will rarely be used in the case of pages)
 	max_submissions INT NOT NULL DEFAULT 1, #Maximum Number of submissions for this genre at this place
-	FOREIGN KEY (uid_place) REFERENCES places(uid_place)
+	PRIMARY KEY (uid_requirement),
+    FOREIGN KEY (uid_place) REFERENCES places(uid_place)
 );
 
 CREATE TABLE results (
@@ -56,12 +57,14 @@ CREATE TABLE results (
 	resultDescription TEXT,
 	resultMoney INT DEFAULT 0, #($)
 	publication TINYINT(1) DEFAULT 0,
+    PRIMARY KEY (uid_result),
 	FOREIGN KEY (uid_place) REFERENCES places(uid_place)
 );
 
 CREATE TABLE submissions (
 	uid_submission INT NOT NULL AUTO_INCREMENT,
-	uid_piece INT,
+	uid_user INT,
+    uid_piece INT,
 	uid_place INT,
 	uid_result INT DEFAULT NULL, #Will be NULL if there isn't yet a result, '1' if declined/rejected
 	dateSubmitted DATE,
@@ -75,3 +78,4 @@ CREATE TABLE submissions (
 
 #DO NOT CHANGE: The first results row must be for rejection (from any place) for the schema to function as efficiently as possible
 INSERT INTO results (uid_place, resultName, resultDescription) values (NULL, "Declined", "generic rejection.");
+

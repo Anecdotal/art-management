@@ -1,23 +1,33 @@
 var mysql = require('mysql');
 var moment = require('moment');
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
 var mustacheExpress = require('mustache-express');
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use( bodyParser.json());
 app.engine('html', mustacheExpress());
 app.set('views', __dirname + '/views');
+
+app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/views'));
+
+//	Begin the routes
 var database = require('./database.js');
 var con = database.con;
 
 //	Separated Code Pulled In
 var add_edit = require("./add_edit.js").init(app);
-var home = require('./home.js').init(app);
+var home = require('./home.js')(app);
 var login = require("./login.js").init(app);
 var rows = require("./rows.js").init(app);
-var tables = require("./tables.js").init(app);
+var tables = require("./tables.js")(app);
 
 //	OUTDATED ENDPOINTS BEGIN:
 //	DO NOT RUN!!!!
-app.get('/', function(request, response){
+/*app.get('/', function(request, response){
 	con.query('SELECT * FROM places', function(err, places) {
 		if(!err) {
 			var futurePlaces = [];
@@ -76,7 +86,7 @@ app.get('/pieces-places', function(request, response) {
 	});
 })*/
 
-app.get('/places/:placeName', function(request, response) {
+/*app.get('/places/:placeName', function(request, response) {
 	con.query('SELECT * FROM places WHERE placeName = ?', [request.params.placeName], function(err, place) {
 		if(!err) {
 			if(place.length != 0) {
@@ -98,7 +108,7 @@ app.get('/places/:placeName', function(request, response) {
 			response.send("Se produjo un error. Tratalo Otra Vez!");
 		}
 	});
-})
+})*/
 
 var server = app.listen(8000, function() {
 	console.log('Writing server listening on port %s', server.address().port);
