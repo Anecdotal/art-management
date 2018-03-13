@@ -4,6 +4,75 @@
 		<link rel="stylesheet" type="text/css" href="index.css"></link>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.1.0/mustache.min.js"></script>
-		<title>{{User}}'s Art + Writing</title>
+		<title>{{pieceTitle}}</title>
 	</head>
+	<body>
+		{{#rowData}}
+		<header style="font-size:2px; position: relative;	width: 100%; height: 50px;	background-color: #74d3ae;	color: white;	font-size: 2.75em;">
+			<div style="font-size:.75em; display:inline-block; width: 10%; height: 80%; text-align: left;">
+			<a href="/">Home</a>
+			</div>
+			<div style="font-size:.75em; display:inline-block; width: 40%; height: 80%; text-align: center;"> 
+			{{pieceTitle}}
+			</div>
+			<div style="font-size:.75em; display:inline-block; width: 40%; height: 80%; text-align: right;"> 
+			<a href="/tables/submissions"> Submissions </a> 
+			<a href="/tables/pieces"> Pieces </a> 
+			<a href="/tables/places"> Places </a> 
+			</div>
+		</header>
+		<div style="float:left; width: 49%; height: 40%; text-align:left;">
+			<h3> Piece Specifics: </h3>
+			<a href="{{link}}" target="_blank"> View Piece Here </a> <br>
+			<b> Date Created:</b> {{dateCreated}} <br>
+			<b>{{mediumOrGenre}}:</b> {{medium_genre}} <br>
+			<b>{{widthOrWords}}:</b> {{width_wordsLines}} <br>
+			<b>{{heightOrPages}}</b> {{height_pages}} <br>
+		</div>
+		{{/rowData}}
+		{{^submitted}}
+		<div style="float:right; position: static; width: 49%; height: 40%; text-align:center;">
+			<h3>Submissions</h3>
+			<table>
+				<tr>
+					<th>Place</th>
+					<th>Date of Notification</th>
+					<th>Place of Notification</th>
+					<th>Result</th>
+					<th>Result Description</th>
+					<th>Prize</th>
+				</tr>
+				{{#subs}}
+	  			<tr>
+		  			<td><a href="/places/{{uid_place}}">{{placeName}}</a></td> 
+		  			<td>{{notificationDate}}</td> 
+		  			<td>{{notificationPlace}}</td> 
+		  			<td>{{result}}</td>
+		  			<td>{{resultDescription}}</td> 
+		  			<td>{{prize}}</td> 
+	  			</tr>
+	  			{{/subs}}
+	  		</table>
+		</div>
+		{{/submitted}}
+		<div style="float:center; position: relative; width: 90%; height: 40%; text-align:center;">
+			<h3>Eligible Places</h3>
+			<table>
+				<tr>
+					<th>Place</th>
+					<th>Deadline</th>
+					<th>Comments (extra info)</th>
+					<th>Submit Link</th>
+				</tr>
+				{{#eligible}}
+	  			<tr>
+		  			<td><a href="/places/{{uid_place}}">{{placeName}}</a></td> 
+		  			<td>{{deadline}}</td> 
+		  			<td>{{comments}}</td> 
+		  			<td><a href="{{submitLink}}" target="_blank">Submit Here</a></td>
+	  			</tr>
+	  			{{/eligible}}
+	  		</table>
+		</div>
+	</body>
 </html>
