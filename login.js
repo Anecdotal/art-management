@@ -38,10 +38,6 @@ module.exports = {
 	
 	//	Checks if a user is logged in
 	isLoggedIn: function(req, res, next){
-	 	if (req.user == undefined) {
-	 		return next();
-	 	} else {
-	 		res.redirect('/login');
-	 	}
+	 	return next();
 	}
 }
