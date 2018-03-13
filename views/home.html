@@ -11,11 +11,13 @@
 			<div style="font-size:.75em; display:inline-block; width: 10%; height: 80%; text-align: left;">
 			<a href="/">Home</a>
 			</div>
-			<div style="font-size:.75em; display:inline-block; width: 60%; height: 80%; text-align: center;"> 
-			{{User}}'s Art + Writing
+			<div style="font-size:.75em; display:inline-block; width: 40%; height: 80%; text-align: center;"> 
+			{{username}}'s Art + Writing
 			</div>
-			<div style="font-size:.75em; display:inline-block; width: 20%; height: 80%; text-align: right;"> 
-			<a href="/pieces-places"> Pieces + Places </a> 
+			<div style="font-size:.75em; display:inline-block; width: 40%; height: 80%; text-align: right;"> 
+			<a href="/tables/submissions"> Submissions </a> 
+			<a href="/tables/pieces"> Pieces </a> 
+			<a href="/tables/places"> Places </a> 
 			</div>
 		</header>
 		<div style="float:left; width: 49%; height: 50%; text-align:left;">
@@ -23,19 +25,19 @@
 			<table>
 				<tr>
 					<th>Place</th>
-					<th>Genre</th>
-					<th>Prize</th>
+					<th>Cost</th>
+					<th>Requires Unpublished Pieces?</th>
 					<th>Deadline</th>
 				</tr>
 				{{#places}}
 	  			<tr>
-		  			<td><a href="/places/{{placeName}}">{{placeName}}</a></td> 
-		  			<td>{{genre}}</td> 
-		  			<td>{{prize}}</td> 
+		  			<td><a href="/places/{{uid_place}}">{{placeName}}</a></td> 
+		  			<td>{{cost}}</td> 
+		  			<td>{{firstRights}}</td> 
 		  			<td>{{deadline}}</td>
 	  			</tr>
 	  			{{/places}}
-	  			</table>
+	  		</table>
 		</div>
 		{{^submitted}}
 		<div style="float:right; width: 49%; height: 50%; text-align:center;">
@@ -45,14 +47,16 @@
 					<th>Place</th>
 					<th>Piece</th>
 					<th>Date Submitted</th>
-					<th>Notification Date/Period</th>
+					<th>Place of Notification</th>
+					<th>Date of Notification</th>
 				</tr>
 				{{#subs}}
 	  			<tr>
-		  			<td><a href="/places/{{placeName}}">{{placeName}}</a></td> 
-		  			<td>{{pieceTitle}}</td> 
+		  			<td><a href="/places/{{uid_place}}">{{placeName}}</a></td> 
+		  			<td><a href="/pieces/{{uid_piece}}">{{pieceTitle}}</a></td> 
 		  			<td>{{dateSubmitted}}</td> 
-		  			<td>{{notification}}</td>
+		  			<td>{{notificationPlace}}</td>
+		  			<td>{{notificationDate}}</td>
 	  			</tr>
 	  			{{/subs}}
 	  		</table>
